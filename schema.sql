@@ -9,3 +9,10 @@ create table renders (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+create table if not exists osu_links (
+  platform text not null,
+  user_id text not null,
+  osu_username text not null,
+  primary key (platform, user_id)
+);
