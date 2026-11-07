@@ -21,3 +21,10 @@ tr:last-child td{border-bottom:0}
 .tag{font-weight:500}.tag.done{color:var(--ok)}.tag.rendering{color:var(--warn)}.tag.failed{color:var(--pink)}
 .bar{height:4px;background:var(--line);border-radius:2px;margin-top:4px;width:110px}.bar i{display:block;height:100%;background:var(--pink);border-radius:2px}
 .err{color:var(--pink);margin:0}
+.live{margin-left:14px;font:500 13px 'Instrument Sans',sans-serif;color:var(--ok);vertical-align:middle}
+.live::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:currentColor;margin-right:6px;animation:pulse 1.6s ease-in-out infinite}
+.live.off{color:var(--mute)}.live.off::before{animation:none}
+.mute{color:var(--mute)}
+.bar i{transition:width .6s ease}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.live::before{animation:none}}
