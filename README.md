@@ -1,8 +1,8 @@
 # Replay Desk
 
-Telegram + Discord osu! replay render bots (via o!rdr) with an admin panel. Runs on Vercel + Supabase, no custom domain needed.
+Telegram + Discord osu! replay render bots (via o!rdr) with an admin panel. Runs on Vercel + Neon, no custom domain needed.
 
-1. Run `supabase.sql` in the Supabase SQL editor.
+1. Run `schema.sql` in the Neon SQL Editor.
 2. Add every variable from `.env.example` in Vercel > Settings > Environment Variables, then deploy.
 3. Discord Developer Portal > General Information > Interactions Endpoint URL: `https://YOUR-SITE.vercel.app/api/discord`.
 4. Open `/login`, sign in, click "Connect bots" (sets the Telegram webhook, registers `/render`).
