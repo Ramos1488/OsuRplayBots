@@ -1,15 +1,15 @@
 import { redirect } from 'next/navigation';
 import { isAdmin } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { sql } from '@/lib/db';
 export const dynamic = 'force-dynamic';
-
-const count = async (s) => (await db.from('renders').select('*', { count: 'exact', head: true }).eq('status', s)).count || 0;
 
 export default async function Admin() {
   if (!isAdmin()) redirect('/login');
-  const [{ data: rows = [] }, rendering, done, failed] = await Promise.all([
-    db.from('renders').select('*').order('id', { ascending: false }).limit(50),
-    count('rendering'), count('done'), count('failed'),
+  const [rows, [{ rendering, done, failed }]] = await Promise.all([
+    sql`select * from renders order by id desc limit 50`,
+    sql`select count(*) filter (where status = 'rendering')::int as rendering,
+      count(*) filter (where status = 'done')::int as done,
+      count(*) filter (where status = 'failed')::int as failed from renders`,
   ]);
   return (
     <main>
